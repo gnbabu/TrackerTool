@@ -10,7 +10,7 @@
             checkboxColumnWidth: '40px', // ✅ NEW
             pageSizeOptions: [5, 10, 20, 50, 100],
             initialPageSize: 10,
-            tableClass: 'maximus-base-table',
+            tableClass: 'ui-base-table',
             theadClass: '',   // ✅ NEW
             rowClass: '',     // ✅ NEW
             gridTitle: 'Data Grid',

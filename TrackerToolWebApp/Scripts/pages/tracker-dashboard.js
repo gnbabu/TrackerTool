@@ -240,7 +240,7 @@ function renderOrdersGrid(data) {
 
             ],
 
-            tableClass: 'maximus-base-table',
+            tableClass: 'ui-base-table',
             gridTitle: '',
             noDataMessage: 'No orders found.',
             idProperty: 'orderNumber',

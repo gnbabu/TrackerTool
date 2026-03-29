@@ -1,4 +1,4 @@
-﻿table.maximus-base-table {
+﻿table.ui-base-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -9,7 +9,7 @@
 
     /* ================= HEADER ================= */
 
-    table.maximus-base-table thead th {
+    table.ui-base-table thead th {
         background: #ffffff; /* light grey-purple like screenshot */
         color: #444;
         font-weight: 700;
@@ -22,7 +22,7 @@
 
     /* ================= FILTER INPUT ================= */
 
-    table.maximus-base-table thead .filter-input {
+    table.ui-base-table thead .filter-input {
         font-size: 12px;
         padding: 3px 8px;
         border-radius: 4px;
@@ -31,7 +31,7 @@
 
     /* ================= BODY CELLS ================= */
 
-    table.maximus-base-table tbody td {
+    table.ui-base-table tbody td {
         padding: 11px 14px;
         border-bottom: 1px solid #eceaf4;
         color: #444;
@@ -40,46 +40,46 @@
 
     /* ================= ZEBRA ROW COLORS ================= */
 
-    table.maximus-base-table tbody tr.dg-data-row:nth-child(odd) {
+    table.ui-base-table tbody tr.dg-data-row:nth-child(odd) {
         background-color: #ffffff;
     }
 
-    table.maximus-base-table tbody tr.dg-data-row:nth-child(even) {
+    table.ui-base-table tbody tr.dg-data-row:nth-child(even) {
         background-color: #efedf5; /* lavender stripe like screenshot */
     }
 
     /* ================= ROW HOVER ================= */
 
-    table.maximus-base-table tbody tr.dg-data-row:hover {
+    table.ui-base-table tbody tr.dg-data-row:hover {
         background-color: #e4e0f2;
     }
 
     /* ================= LINKS ================= */
 
-    table.maximus-base-table tbody td a {
+    table.ui-base-table tbody td a {
         font-weight: 500;
         text-decoration: underline !important;
     }
 
-        table.maximus-base-table tbody td a:hover {
+        table.ui-base-table tbody td a:hover {
             text-decoration: underline;
         }
 
-    table.maximus-base-table tbody tr.dg-data-row:nth-of-type(odd) {
+    table.ui-base-table tbody tr.dg-data-row:nth-of-type(odd) {
         background: #f7f5fa;
     }
 
-    table.maximus-base-table tbody tr.dg-data-row:nth-of-type(even) {
+    table.ui-base-table tbody tr.dg-data-row:nth-of-type(even) {
         background: #ffffff;
     }
 
-    table.maximus-base-table tbody tr.dg-data-row:hover {
+    table.ui-base-table tbody tr.dg-data-row:hover {
         background: #f4f5fa;
     }
 
     /* ================= NO DATA ================= */
 
-    table.maximus-base-table tbody tr td.text-center {
+    table.ui-base-table tbody tr td.text-center {
         color: #777;
         font-size: 14px !important;
     }
@@ -87,13 +87,13 @@
 /* ================= PAGINATION ================= */
 
 .pagination .page-item.active .page-link {
-    background-color: #6e42a3 !important;
-    border-color: #6e42a3 !important;
+    background-color: #0672cb !important;
+    border-color: #0672cb !important;
     color: #fff !important;
 }
 
 .pagination .page-link {
-    color: #6e42a3 !important;
+    color: #0672cb !important;
     font-size: 14px !important;
 }
 
@@ -109,13 +109,13 @@ th:hover .sort-icon {
 }
 
 .btn-purple {
-    background-color: #5b2d8b;
+    background-color: #0672cb;
     color: #fff;
     border: none;
 }
 
     .btn-purple:hover {
-        background-color: #4a2372;
+        background-color: #0672cb;
         color: #fff;
     }
 
