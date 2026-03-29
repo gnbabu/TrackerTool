@@ -19,13 +19,13 @@
                 $accordion.data("settings", settings);
 
                 // hide all panels initially to prevent flicker
-                $accordion.find(".maximus-accordion-content").hide();
+                $accordion.find(".custom-ui-accordion-content").hide();
 
                 // Click handler
-                $accordion.on("click", ".maximus-accordion-header", function () {
+                $accordion.on("click", ".custom-ui-accordion-header", function () {
 
                     var index = $(this)
-                        .closest(".maximus-accordion-item")
+                        .closest(".custom-ui-accordion-item")
                         .index();
 
                     methods.toggle.call($accordion, index);
@@ -46,8 +46,8 @@
             var $accordion = $(this);
             var settings = $accordion.data("settings");
 
-            var $item = $accordion.find(".maximus-accordion-item").eq(index);
-            var $content = $item.find(".maximus-accordion-content");
+            var $item = $accordion.find(".custom-ui-accordion-item").eq(index);
+            var $content = $item.find(".custom-ui-accordion-content");
 
             if (!settings.allowMultiple) {
                 methods.closeAll.call($accordion);
@@ -73,8 +73,8 @@
             var $accordion = $(this);
             var settings = $accordion.data("settings");
 
-            var $item = $accordion.find(".maximus-accordion-item").eq(index);
-            var $content = $item.find(".maximus-accordion-content");
+            var $item = $accordion.find(".custom-ui-accordion-item").eq(index);
+            var $content = $item.find(".custom-ui-accordion-content");
 
             if ($item.hasClass("active")) {
 
@@ -94,7 +94,7 @@
         toggle: function (index) {
 
             var $accordion = $(this);
-            var $item = $accordion.find(".maximus-accordion-item").eq(index);
+            var $item = $accordion.find(".custom-ui-accordion-item").eq(index);
 
             if ($item.hasClass("active"))
                 methods.close.call($accordion, index);
@@ -108,9 +108,9 @@
             var $accordion = $(this);
             var settings = $accordion.data("settings");
 
-            $accordion.find(".maximus-accordion-item")
+            $accordion.find(".custom-ui-accordion-item")
                 .removeClass("active")
-                .find(".maximus-accordion-content")
+                .find(".custom-ui-accordion-content")
                 .stop(true, true)
                 .slideUp(settings.animationSpeed);
 

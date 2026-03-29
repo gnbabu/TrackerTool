@@ -148,7 +148,7 @@
             alert("Please select a filter type");
             return;
         }
-        debugger;
+        
         console.log("Final Request:", request);
 
         // 🚀 Call Orders API

@@ -6,19 +6,19 @@
     <script src="Scripts/pages/tracker-dashboard.js"></script>
 
     <div class="container my-4">
-        <div id="filterAccordion" class="maximus-accordion">
+        <div id="filterAccordion" class="custom-ui-accordion">
 
-            <div class="maximus-accordion-item">
+            <div class="custom-ui-accordion-item">
 
-                <div class="maximus-accordion-header d-flex justify-content-between align-items-center">
-                    <span class="maximus-accordion-bar"></span>
-                    <span class="maximus-accordion-title">Select Filters</span>
-                    <span class="maximus-accordion-arrow">
+                <div class="custom-ui-accordion-header d-flex justify-content-between align-items-center">
+                    <span class="custom-ui-accordion-bar"></span>
+                    <span class="custom-ui-accordion-title">Select Filters</span>
+                    <span class="custom-ui-accordion-arrow">
                         <span class="material-icons">expand_more</span>
                     </span>
                 </div>
 
-                <div class="maximus-accordion-content">
+                <div class="custom-ui-accordion-content">
 
                     <div class="card shadow-sm">
                         <div class="card-body">

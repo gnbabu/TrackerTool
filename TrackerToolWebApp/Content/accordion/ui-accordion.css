@@ -1,4 +1,4 @@
-﻿.maximus-accordion {
+﻿.custom-ui-accordion {
     border: 1px solid #e2dff0;
     border-radius: 6px;
     overflow: hidden;
@@ -6,12 +6,12 @@
 }
 
 /* item */
-.maximus-accordion-item {
+.custom-ui-accordion-item {
     border-bottom: 1px solid #e6e4f2;
 }
 
 /* header */
-.maximus-accordion-header {
+.custom-ui-accordion-header {
     display: flex;
     align-items: center;
     padding: 16px 20px 16px 50px;
@@ -23,7 +23,7 @@
 }
 
 /* purple bar */
-.maximus-accordion-bar {
+.custom-ui-accordion-bar {
     position: absolute;
     left: 0;
     top: 0;
@@ -34,27 +34,27 @@
 }
 
 /* title */
-.maximus-accordion-title {
+.custom-ui-accordion-title {
     flex: 1;
     font-size: 18px;
     font-weight: 600;
-    color: #5b4bb7;
+    color: #0672cb;
 }
 
 /* arrow */
-.maximus-accordion-arrow {
+.custom-ui-accordion-arrow {
     display: flex;
     align-items: center;
     color: #6f6f6f;
     transition: transform .25s ease;
 }
 /* rotate arrow */
-.maximus-accordion-item.active .maximus-accordion-arrow {
+.custom-ui-accordion-item.active .custom-ui-accordion-arrow {
     transform: rotate(180deg);
 }
 
 /* accordion body */
-.maximus-accordion-content {
+.custom-ui-accordion-content {
     padding: 20px;
     background: #fff;
     overflow: hidden;
