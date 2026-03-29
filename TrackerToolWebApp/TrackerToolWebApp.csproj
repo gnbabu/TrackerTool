@@ -150,11 +150,28 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\core\api.service.js" />
+    <Content Include="Scripts\core\config.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pages\correspondence.js" />
+    <Content Include="Scripts\pages\hospital-affiliation.js" />
+    <Content Include="Scripts\pages\provider-group.js" />
+    <Content Include="Scripts\pages\report-management.js" />
+    <Content Include="Scripts\pages\report-viewer.js" />
+    <Content Include="Scripts\pages\work-history.js" />
+    <Content Include="Scripts\plugins\accordion\maximus.accordion.js" />
+    <Content Include="Scripts\plugins\datagrid\maximus.datagrid.plugin.js" />
+    <Content Include="Scripts\plugins\datepicker\maximus.datePicker.js" />
+    <Content Include="Scripts\plugins\modal\maximus.modal.plugin.js" />
+    <Content Include="Scripts\services\correspondence.service.js" />
+    <Content Include="Scripts\services\hospital-affiliation.service.js" />
+    <Content Include="Scripts\services\provider-group.service.js" />
+    <Content Include="Scripts\services\reports.service.js" />
+    <Content Include="Scripts\services\work-history.service.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -219,12 +236,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
