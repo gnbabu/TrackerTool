@@ -27,7 +27,7 @@
         top: 50%;
         transform: translateY(-50%);
         font-size: 22px;
-        color: #6f42c1;
+        color: #0672cb;
         cursor: pointer;
     }
 
@@ -44,7 +44,7 @@
 
 /* HEADER */
 .calendar-header {
-    background: #6f42c1;
+    background: #0672cb;
     color: #fff;
     padding: 12px;
     display: flex;
@@ -109,13 +109,13 @@
 
     /* ACTIVE */
     .day.active {
-        background: #6f42c1;
+        background: #0672cb;
         color: #fff;
     }
 
     /* TODAY */
     .day.today {
-        border: 1px solid #6f42c1;
+        border: 1px solid #0672cb;
         font-weight: bold;
     }
 

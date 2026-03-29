@@ -30,7 +30,7 @@ body {
 }
 /* ===== HEADERS ===== */
 .brand-bar {
-    background: linear-gradient(180deg, #6e42a3, #4a287a);
+    background: linear-gradient(180deg, #0672cb, #0672cb);
     color: #fff;
     padding: 20px 20px;
 }
@@ -46,12 +46,12 @@ body {
 }
 
     .menu-bar .nav-link {
-        color: #6e42a3 !important;
+        color: #0672cb !important;
         font-weight: 600;
     }
 
         .menu-bar .nav-link.active {
-            border-bottom: 2px solid #6e42a3;
+            border-bottom: 2px solid #0672cb;
         }
 
 /* ===== CARDS ===== */
@@ -62,9 +62,10 @@ body {
 }
 
 .page-card-header {
-    padding: 12px 16px;
+    padding: 20px 16px;
+    font-size: 18px;
     font-weight: 600;
-    color: #6e42a3;
+    color: #0672cb;
     border-bottom: 1px solid #e6e1f0;
     display: flex;
     justify-content: space-between;
