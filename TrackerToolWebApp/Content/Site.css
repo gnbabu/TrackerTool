@@ -19,3 +19,60 @@ textarea {
         padding: 0;
     }
 }
+
+body {
+    background: #f4f5fa;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 100% !important;
+}
+/* ===== HEADERS ===== */
+.brand-bar {
+    background: linear-gradient(180deg, #6e42a3, #4a287a);
+    color: #fff;
+    padding: 20px 20px;
+}
+
+.brand-bar-title {
+    font-size: 20px;
+}
+
+.menu-bar {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 20px;
+}
+
+    .menu-bar .nav-link {
+        color: #6e42a3 !important;
+        font-weight: 600;
+    }
+
+        .menu-bar .nav-link.active {
+            border-bottom: 2px solid #6e42a3;
+        }
+
+/* ===== CARDS ===== */
+.page-card {
+    background: #fff;
+    border: 1px solid #ded9eb;
+    border-radius: 8px;
+}
+
+.page-card-header {
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #6e42a3;
+    border-bottom: 1px solid #e6e1f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#googleToggle {
+    width: 3rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
