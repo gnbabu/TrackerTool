@@ -93,24 +93,27 @@
 
 /* 🔥 Scroll container */
 .pagination-inner-scroll {
-    width: 100%;
     overflow-x: auto;
+    display: flex;
+    justify-content: flex-start; /* Stretches pagination to available space */
+    align-items: center;
 }
 
-/* 🔥 Force pagination to expand (THIS FIXES IT) */
+/* Ensure pagination items don't shrink and stay in one row */
 .pagination {
-    display: inline-flex !important; /* 🔥 key */
+    display: flex !important;
     flex-wrap: nowrap !important;
+    justify-content: flex-start;  /* Align pagination to the left */
     white-space: nowrap;
-    min-width: max-content; /* 🔥 key */
+    min-width: max-content;
 }
 
-    /* 🔥 Prevent shrinking */
-    .pagination .page-item {
-        flex: 0 0 auto;
-    }
+/* Prevent shrinking of individual items */
+.pagination .page-item {
+    flex: 0 0 auto;
+}
 
-/* Optional scrollbar */
+/* Scrollbar styling */
 .pagination-inner-scroll::-webkit-scrollbar {
     height: 8px;
 }
@@ -125,9 +128,9 @@
     border-radius: 4px;
 }
 
-    .pagination-inner-scroll::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+.pagination-inner-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 .pagination .page-item.active .page-link {
     background-color: #0672cb !important;
@@ -183,4 +186,10 @@ th:hover .sort-icon {
 table.ui-base-table td {
     white-space: normal !important; /* allow wrapping */
     word-break: break-word !important; /* break long text */
+}
+
+.data-grid-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

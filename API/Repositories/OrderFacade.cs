@@ -6,9 +6,9 @@ namespace API.Repositories
     {
         public List<OrderRecord> SearchOrders(OrderSearchRequest request)
         {
-            // var data = GetOrdersData();
+             var data = GetOrdersData();
 
-            var data = GetOrdersDataAutoGenerate();
+            //var data = GetOrdersDataAutoGenerate();
 
             return data;
             // 🔍 Order Number filter

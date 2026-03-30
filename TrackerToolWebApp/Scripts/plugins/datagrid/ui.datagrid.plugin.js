@@ -626,7 +626,7 @@
                             <h3>${settings.gridTitle}</h3>
 
                             <!-- 🔥 TOOLBAR -->
-                            <div class="row mb-3 align-items-center">
+                            <div class="row mb-3 align-items-center data-grid-toolbar">
 
                                 <!-- LEFT SIDE -->
                                 <div class="col-md-6 d-flex align-items-center flex-wrap gap-2">
