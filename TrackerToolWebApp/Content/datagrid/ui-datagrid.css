@@ -1,5 +1,7 @@
 ﻿table.ui-base-table {
-    width: 100%;
+    width: max-content; /* 🔥 KEY FIX */
+    min-width: 100%; /* keep full width */
+    table-layout: fixed; /* respect column widths */
     border-collapse: separate;
     border-spacing: 0;
     font-size: 14px;
@@ -17,7 +19,8 @@
         padding: 10px 14px;
         border-bottom: 1px solid #ddd !important;
         vertical-align: middle;
-        word-wrap: break-word;        
+        white-space: normal;
+        word-break: break-word;
     }
 
     /* ================= FILTER INPUT ================= */
@@ -36,6 +39,8 @@
         border-bottom: 1px solid #eceaf4;
         color: #444;
         vertical-align: middle;
+        white-space: normal !important;
+        word-break: break-word !important;
     }
 
     /* ================= ZEBRA ROW COLORS ================= */
@@ -127,3 +132,20 @@ th:hover .sort-icon {
 .dg-odd {
     background: #ffffff;
 }
+
+
+/* 🔥 Only table scrolls */
+.grid-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 🔥 Prevent column shrink */
+table.ui-base-table {
+    table-layout: auto;
+}
+
+    table.ui-base-table td {
+        white-space: normal !important; /* allow wrapping */
+        word-break: break-word !important; /* break long text */
+    }

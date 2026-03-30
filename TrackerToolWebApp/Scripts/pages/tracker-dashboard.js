@@ -236,7 +236,30 @@ function renderOrdersGrid(data) {
                 { key: 'dpidIrn', title: 'DPID / IRN', type: 'text', sortable: true },
                 { key: 'quote', title: 'Quote', type: 'text', sortable: true },
                 { key: 'buid', title: 'BUID', type: 'text', sortable: true },
-                { key: 'region', title: 'Region', type: 'text', sortable: true }
+                { key: 'region', title: 'Region', type: 'text', sortable: true },
+                { key: 'serviceTag', title: 'Service Tag', type: 'text', sortable: true },
+                { key: 'customerSalesOrderNo', title: 'Customer Sales Order No', type: 'text', sortable: true },
+
+                { key: 'tenantId', title: 'Tenant ID', type: 'text', sortable: true },
+                { key: 'tenantDomain', title: 'Tenant Domain', type: 'text', sortable: true },
+
+                { key: 'groupTag', title: 'Group Tag', type: 'text', sortable: true },
+                { key: 'skuNumber', title: 'SKU Number', type: 'text', sortable: true },
+
+                { key: 'statusComment', title: 'Status Comment', type: 'text', sortable: true },
+
+                {
+                    key: 'creationDate',
+                    title: 'Creation Date',
+                    type: 'date',
+                    sortable: true
+                },
+                {
+                    key: 'lastUpdateDate',
+                    title: 'Last Update Date',
+                    type: 'date',
+                    sortable: true
+                }
 
             ],
 

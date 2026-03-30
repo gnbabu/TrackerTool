@@ -597,7 +597,7 @@
                     </div>
                     ` : ''}
                 </div>
-                <div class="table-responsive">
+                  <div class="grid-scroll-wrapper">
                     <table class="${settings.tableClass}">
                         <thead>
                             <tr id="table-head"></tr>
