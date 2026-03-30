@@ -6,7 +6,9 @@ namespace API.Repositories
     {
         public List<OrderRecord> SearchOrders(OrderSearchRequest request)
         {
-            var data = GetOrdersData();
+            // var data = GetOrdersData();
+
+            var data = GetOrdersDataAutoGenerate();
 
             return data;
             // 🔍 Order Number filter
@@ -59,6 +61,7 @@ namespace API.Repositories
             return data;
         }
 
+
         public object ReleaseHold(List<string> orderNumbers)
         {
             // Mock logic – replace with DB update later
@@ -107,6 +110,58 @@ namespace API.Repositories
             new OrderRecord { Action="CollectIDRData", OnHoldAgeDays=6, OrderNumber="103183024", DpidIrn="7400015086663", Quote="340002066663", Buid="6161", Region="EMEA", CreationDate=today.AddDays(-6) },
             new OrderRecord { Action="CollectIDRData", OnHoldAgeDays=7, OrderNumber="103183025", DpidIrn="7400015086664", Quote="340002066664", Buid="6161", Region="EMEA", CreationDate=today.AddDays(-7) }
         };
+        }
+
+        private List<OrderRecord> GetOrdersDataAutoGenerate()
+        {
+            var today = DateTime.Now;
+            var list = new List<OrderRecord>(5000);
+
+            var regions = new[] { "EMEA", "DAO", "APJ", "NA" };
+            var buids = new[] { "11", "202", "909", "6161", "3838" };
+            var domains = new[] { "contoso.com", "microsoft.com", "example.org", "demo.net" };
+            var groupTags = new[] { "GRP-A", "GRP-B", "GRP-C" };
+            var statusComments = new[] { "Pending", "In Progress", "Completed", "On Hold" };
+
+            for (int i = 1; i <= 5000; i++)
+            {
+                var region = regions[i % regions.Length];
+                var buid = buids[i % buids.Length];
+
+                list.Add(new OrderRecord
+                {
+                    // Core fields
+                    Action = "CollectIDRData",
+                    OnHoldAgeDays = (i % 10) + 1,
+                    OrderNumber = (103183000 + i).ToString(),
+
+                    DpidIrn = i % 5 == 0
+                        ? $"AT{2000 + (i % 30)}-8007-{39000 + i}"
+                        : (7400015000000 + i).ToString(),
+
+                    Quote = i % 4 == 0
+                        ? (13330000 + i).ToString()
+                        : (340002000000 + i).ToString(),
+
+                    Buid = buid,
+                    Region = region,
+
+                    // ✅ Newly added fields (NOW FILLED)
+                    ServiceTag = $"SRV-{100000 + i}",
+                    CustomerSalesOrderNo = $"CSO-{200000 + i}",
+                    TenantId = $"TEN-{300000 + i}",
+                    TenantDomain = domains[i % domains.Length],
+                    GroupTag = groupTags[i % groupTags.Length],
+                    SkuNumber = $"SKU-{400000 + i}",
+                    StatusComment = statusComments[i % statusComments.Length],
+
+                    // Dates
+                    CreationDate = today.AddDays(-(i % 15)),
+                    LastUpdateDate = today.AddDays(-(i % 7))
+                });
+            }
+
+            return list;
         }
     }
 }

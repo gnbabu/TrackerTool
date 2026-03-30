@@ -607,26 +607,28 @@
                 </div>
                 <div class="row mt-3 align-items-center">
 
-    <div class="col-md-6 d-flex align-items-center gap-2 flex-wrap">
+                <div class="col-md-6 d-flex align-items-center gap-2 flex-wrap">
 
-        <span class="small">Showing</span>
+                    <span class="small">Showing</span>
 
-        <select id="page-size-dropdown"
-                class="form-select form-select-sm w-auto"
-                aria-label="Rows per page select">
-        </select>
+                    <select id="page-size-dropdown"
+                            class="form-select form-select-sm w-auto"
+                            aria-label="Rows per page select">
+                    </select>
 
-        <span id="page-info" class="text-muted small"></span>
+                    <span id="page-info" class="text-muted small"></span>
 
-    </div>
+                </div>
 
-    <div class="col-md-6">
-        <nav aria-label="Page navigation" class="d-flex justify-content-md-end">
-            <ul class="pagination pagination-sm mb-0" id="pagination"></ul>
-        </nav>
-    </div>
+                <div class="col-md-6">
+                    <nav aria-label="Page navigation" class="d-flex justify-content-md-end">
+                         <div class="pagination-inner-scroll">
+                            <ul class="pagination pagination-sm mb-0" id="pagination"></ul>
+                        </div>
+                    </nav>
+                </div>
 
-</div>
+            </div>
             `);
 
             let $pageSizeDropdown = $element.find('#page-size-dropdown');

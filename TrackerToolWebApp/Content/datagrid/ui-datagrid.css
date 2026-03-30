@@ -91,6 +91,44 @@
 
 /* ================= PAGINATION ================= */
 
+/* 🔥 Scroll container */
+.pagination-inner-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 🔥 Force pagination to expand (THIS FIXES IT) */
+.pagination {
+    display: inline-flex !important; /* 🔥 key */
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    min-width: max-content; /* 🔥 key */
+}
+
+    /* 🔥 Prevent shrinking */
+    .pagination .page-item {
+        flex: 0 0 auto;
+    }
+
+/* Optional scrollbar */
+.pagination-inner-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.pagination-inner-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.pagination-inner-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+    .pagination-inner-scroll::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
 .pagination .page-item.active .page-link {
     background-color: #0672cb !important;
     border-color: #0672cb !important;
@@ -141,11 +179,8 @@ th:hover .sort-icon {
 }
 
 /* 🔥 Prevent column shrink */
-table.ui-base-table {
-    table-layout: auto;
-}
 
-    table.ui-base-table td {
-        white-space: normal !important; /* allow wrapping */
-        word-break: break-word !important; /* break long text */
-    }
+table.ui-base-table td {
+    white-space: normal !important; /* allow wrapping */
+    word-break: break-word !important; /* break long text */
+}
