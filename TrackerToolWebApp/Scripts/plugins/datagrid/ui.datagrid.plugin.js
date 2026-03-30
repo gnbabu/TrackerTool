@@ -20,7 +20,14 @@
             enableColumnFilters: false,
             enableSorting: false, // overall sorting, defaults to false
             dateFormat: 'MM-DD-YYYY',
-            includeTime: false//  option for formatting dates with time
+            includeTime: false,//  option for formatting dates with time
+            enableColumnVisibility: false,
+            exportOptions: {
+                enable: false,
+                copy: false,
+                excel: false,
+                pdf: false
+            }
         }, options);
 
         let $element = $(this);
@@ -562,6 +569,32 @@
             }
         }
 
+        function buildColumnVisibilityDropdown() {
+            const $dropdown = $element.find('.column-visibility-dropdown').empty();
+            settings.columns.forEach(col => {
+                if (col.type) {
+                    const $li = $(`
+                    <li class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input column-toggle" type="checkbox" id="colVis_${col.key}" data-key="${col.key}" ${visibleColumns[col.key] ? 'checked' : ''}>
+                            <label class="form-check-label" for="colVis_${col.key}">
+                                ${col.title}
+                            </label>
+                        </div>
+                    </li>
+                    `);
+                    $dropdown.append($li);
+                }
+            });
+
+            $element.find('.column-toggle').off('change').on('change', function () {
+                const key = $(this).data('key');
+                visibleColumns[key] = $(this).is(':checked');
+                buildTableHeader();
+                renderTable();
+            });
+        }
+
         function fetchDataFromApi() {
             if (settings.apiUrl) {
                 $.ajax({
@@ -570,6 +603,9 @@
                     success: function (response) {
                         data = response;
                         page = 1;
+                        if (settings.enableColumnVisibility) {
+                            buildColumnVisibilityDropdown();
+                        }
                         buildTableHeader();
                         renderTable();
                     },
@@ -587,49 +623,102 @@
 
         function initialize() {
             $element.html(`
-                <h3>${settings.gridTitle}</h3>
-                <div class="row mb-3">
-                   
-                    ${settings.enableAllColumnSearch ? `
-                    <div class="col-md-6 d-flex align-items-center justify-content-md-end mt-2 mt-md-0">
-                        <label for="common-search" class="form-label mb-0 me-2">Search:</label>
-                        <input type="search" id="common-search" class="form-control form-control-sm w-100 w-md-auto" style="max-width: 300px;" placeholder="Search all columns..." aria-label="Search all columns">
-                    </div>
-                    ` : ''}
-                </div>
-                  <div class="grid-scroll-wrapper">
-                    <table class="${settings.tableClass}">
-                        <thead>
-                            <tr id="table-head"></tr>
-                        </thead>
-                        <tbody id="table-body"></tbody>
-                    </table>
-                </div>
-                <div class="row mt-3 align-items-center">
+                            <h3>${settings.gridTitle}</h3>
 
-                <div class="col-md-6 d-flex align-items-center gap-2 flex-wrap">
+                            <!-- 🔥 TOOLBAR -->
+                            <div class="row mb-3 align-items-center">
 
-                    <span class="small">Showing</span>
+                                <!-- LEFT SIDE -->
+                                <div class="col-md-6 d-flex align-items-center flex-wrap gap-2">
 
-                    <select id="page-size-dropdown"
-                            class="form-select form-select-sm w-auto"
-                            aria-label="Rows per page select">
-                    </select>
+                                    ${settings.enableColumnFilters ? `
+                                        <button id="reset-all-filters"
+                                                type="button"
+                                                class="btn btn-danger btn-sm">
+                                            Reset Filters
+                                        </button>
+                                    ` : ''}
 
-                    <span id="page-info" class="text-muted small"></span>
+                                    ${settings.enableColumnVisibility ? `
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                Columns
+                                            </button>
+                                            <ul class="dropdown-menu column-visibility-dropdown"></ul>
+                                        </div>
+                                    ` : ''}
 
-                </div>
+                                    ${settings.exportOptions.enable && (settings.exportOptions.copy || settings.exportOptions.excel || settings.exportOptions.pdf) ? `
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                                                    data-bs-toggle="dropdown">
+                                                Export
+                                            </button>
+                                            <ul class="dropdown-menu">
 
-                <div class="col-md-6">
-                    <nav aria-label="Page navigation" class="d-flex justify-content-md-end">
-                         <div class="pagination-inner-scroll">
-                            <ul class="pagination pagination-sm mb-0" id="pagination"></ul>
-                        </div>
-                    </nav>
-                </div>
+                                                ${settings.exportOptions.copy ? `
+                                                    <li><button type="button" class="dropdown-item" id="copy-btn">Copy</button></li>` : ''}
 
-            </div>
-            `);
+                                                ${settings.exportOptions.excel ? `
+                                                    <li><button type="button" class="dropdown-item" id="excel-btn">Excel</button></li>` : ''}
+
+                                                ${settings.exportOptions.pdf ? `
+                                                    <li><button type="button" class="dropdown-item" id="pdf-btn">PDF</button></li>` : ''}
+
+                                            </ul>
+                                        </div>
+                                    ` : ''}
+
+                                </div>
+
+                                <!-- RIGHT SIDE -->
+                                <div class="col-md-6 d-flex justify-content-md-end mt-2 mt-md-0">
+
+                                    ${settings.enableAllColumnSearch ? `
+                                        <div class="d-flex align-items-center">
+                                            <label class="me-2 mb-0">Search:</label>
+                                            <input type="search"
+                                                   id="common-search"
+                                                   class="form-control form-control-sm"
+                                                   style="max-width:250px;">
+                                        </div>
+                                    ` : ''}
+
+                                </div>
+
+                            </div>
+
+                            <!-- TABLE -->
+                            <div class="grid-scroll-wrapper">
+                                <table class="${settings.tableClass}">
+                                    <thead><tr id="table-head"></tr></thead>
+                                    <tbody id="table-body"></tbody>
+                                </table>
+                            </div>
+
+                            <!-- PAGINATION -->
+                            <div class="row mt-3 align-items-center">
+
+                                <div class="col-md-6 d-flex align-items-center gap-2 flex-wrap">
+                                    <span class="small">Showing</span>
+
+                                    <select id="page-size-dropdown"
+                                            class="form-select form-select-sm w-auto"></select>
+
+                                    <span id="page-info" class="text-muted small"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <nav class="d-flex justify-content-md-end">
+                                        <div class="pagination-inner-scroll">
+                                            <ul class="pagination pagination-sm mb-0" id="pagination"></ul>
+                                        </div>
+                                    </nav>
+                                </div>
+
+                            </div>
+                        `);
 
             let $pageSizeDropdown = $element.find('#page-size-dropdown');
             settings.pageSizeOptions.forEach(size => {
@@ -641,6 +730,144 @@
                 page = 1;
                 renderTable();
             });
+
+            // Event handlers for exporting functionality
+            if (settings.exportOptions?.copy) {
+                $element.find('#copy-btn').off('click').on('click', () => {
+                    const visibleCols = settings.columns.filter(c => visibleColumns[c.key]);
+                    const filteredData = applyFilters(data);
+
+                    let copyText = '';
+                    // Header row
+                    copyText += visibleCols.map(col => col.title).join('\t') + '\n';
+
+                    // Data rows
+                    filteredData.forEach(row => {
+                        const rowData = visibleCols.map(col => {
+                            let val = row[col.key];
+
+                            if (col.type === 'date' && val) {
+                                const m = moment(val, [settings.dateFormat, "YYYY-MM-DD", moment.ISO_8601], true);
+                                val = m.isValid() ? m.format(settings.dateFormat) : val;
+                            }
+
+                            return (val ?? '').toString().replace(/\t/g, ' '); // Remove tabs to avoid breaking cells
+                        });
+                        copyText += rowData.join('\t') + '\n';
+                    });
+
+                    // Use navigator clipboard API if supported
+                    if (navigator.clipboard?.writeText) {
+                        navigator.clipboard.writeText(copyText)
+                            .then(() => alert('Copied to clipboard!'))
+                            .catch(() => fallbackCopy(copyText));
+                    } else {
+                        fallbackCopy(copyText);
+                    }
+
+                    function fallbackCopy(text) {
+                        const $tempTextArea = $('<textarea>')
+                            .val(text)
+                            .css({ position: 'absolute', top: '-9999px', left: '-9999px', opacity: 0 })
+                            .appendTo('body');
+
+                        $tempTextArea[0].select();
+                        try {
+                            const successful = document.execCommand('copy');
+                            alert(successful ? 'Copied to clipboard!' : 'Copy failed.');
+                        } catch (err) {
+                            alert('Copy failed.');
+                        }
+
+                        $tempTextArea.remove();
+                    }
+                });
+            }
+
+            if (settings.exportOptions?.excel) {
+                $element.find('#excel-btn').off('click').on('click', () => {
+                    const visibleCols = settings.columns.filter(c => visibleColumns[c.key]);
+                    const filteredData = applyFilters(data);
+
+                    // Prepare CSV headers
+                    let csvContent = visibleCols.map(col => `"${col.title}"`).join(',') + '\n';
+
+                    // Prepare CSV rows
+                    filteredData.forEach(row => {
+                        const rowData = visibleCols.map(col => {
+                            let val = row[col.key];
+
+                            // Format dates according to settings
+                            if (col.type === 'date' && val) {
+                                const m = moment(val, [settings.dateFormat, "YYYY-MM-DD", moment.ISO_8601], true);
+                                val = m.isValid() ? m.format(settings.dateFormat) : val;
+                            }
+
+                            // Escape double quotes in values
+                            if (typeof val === 'string') {
+                                val = val.replace(/"/g, '""');
+                            }
+
+                            return `"${val ?? ''}"`;
+                        });
+                        csvContent += rowData.join(',') + '\n';
+                    });
+
+                    // Create a downloadable CSV
+                    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+
+                    const link = document.createElement('a');
+                    link.setAttribute('href', url);
+                    link.setAttribute('download', 'export.csv');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            if (settings.exportOptions?.pdf) {
+                $element.find('#pdf-btn').off('click').on('click', () => {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF({ orientation: 'landscape' });
+
+                    const visibleCols = settings.columns.filter(c => visibleColumns[c.key]);
+                    const filteredData = applyFilters(data);
+
+                    const head = [visibleCols.map(col => col.title)];
+                    const body = filteredData.map(row =>
+                        visibleCols.map(col => {
+                            const val = row[col.key];
+
+                            if (col.type === 'date' && val) {
+                                return moment(val, [settings.dateFormat, "YYYY-MM-DD", moment.ISO_8601], true).isValid()
+                                    ? moment(val).format(settings.dateFormat)
+                                    : val;
+                            }
+                            return val ?? '';
+                        })
+                    );
+
+                    const columnStyles = {};
+                    visibleCols.forEach((col, i) => {
+                        columnStyles[i] = { cellWidth: 'wrap' };
+                    });
+
+                    doc.autoTable({
+                        head,
+                        body,
+                        startY: 10,
+                        styles: { fontSize: 8 },
+                        columnStyles,
+                        tableWidth: 'wrap',
+                        horizontalPageBreak: true,
+                        horizontalPageBreakRepeat: head,
+                        theme: 'grid'
+                    });
+
+                    doc.save('export.pdf');
+                });
+            }
 
             if (settings.enableColumnFilters) {
                 $element.find('#reset-all-filters').click(function () {
@@ -665,6 +892,9 @@
                     sortKey = null;
                     sortAsc = true;
                     page = 1;
+                    if (settings.enableColumnVisibility) {
+                        buildColumnVisibilityDropdown();
+                    }
                     buildTableHeader();
                     renderTable();
                 });
@@ -715,6 +945,9 @@
 
             });
 
+            if (settings.enableColumnVisibility) {
+                buildColumnVisibilityDropdown();
+            }
 
             fetchDataFromApi();
         }

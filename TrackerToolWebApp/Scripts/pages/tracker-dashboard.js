@@ -269,12 +269,19 @@ function renderOrdersGrid(data) {
             idProperty: 'orderNumber',
 
             enableRowSelection: false,
-            enableAllColumnSearch: false,
+            enableAllColumnSearch: true,
             enableColumnFilters: true,
             enableSorting: true,
 
             dateFormat: 'MM-DD-YYYY',
-            includeTime: false
+            includeTime: false,
+            enableColumnVisibility: true,
+            exportOptions: {
+                enable: true,
+                copy: true,
+                excel: true,
+                pdf: true
+            }
         });
 
 }
